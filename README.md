@@ -5,3 +5,7 @@ This project solves as an example ML / DL project for tabular data generation. I
 - Uses the approach of firstly fitting the multivariate gaussians before training the VAE and GAN models
 - Framework rewritten in PyTorch Lightning -> more flexible and easily manageble
 - Implemented the Tensorboard pluggin to visualize the training processes
+
+# Data
+
+An example dataset will be used for the data generation pipeline. The dataset is taken from one of the most popular kaggle challanges: [Titanic](https://www.kaggle.com/competitions/titanic/data). Download and put it into the folder `data`.
