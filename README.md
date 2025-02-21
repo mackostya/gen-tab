@@ -9,3 +9,11 @@ This project solves as an example ML / DL project for tabular data generation. I
 # Data
 
 An example dataset will be used for the data generation pipeline. The dataset is taken from one of the most popular kaggle challanges: [Titanic](https://www.kaggle.com/competitions/titanic/data). Download and put it into the folder `data`.
+
+# Environment
+
+Create environment as follows:
+
+```
+conda env create -f environment.yml
+```
