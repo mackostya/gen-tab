@@ -1,0 +1,31 @@
+data_transformer_path: path\to\your\data_transoformer.pkl
+train_data_path: path\to\your\train\data
+val_data_path: path\to\your\validation\data
+
+data_dir: absolute_path\to\your\data
+# ---------------
+# Hyperparameters
+# ---------------
+epochs: 10000
+batch_size: 64
+
+vae:
+  embedding_dim: 32
+  compress_dims: [256, 128, 64, 32]
+  decompress_dims: [32, 64, 128, 256]
+
+  generation:
+    n_samples_to_generate: 1000000
+    new_generated_data_filename: name_of_generated_file.hdf5
+    model_path: path/to/model/checkpoint.ckpt
+
+gan:
+  embedding_dim: 128
+  generator_dims: [256, 256, 256]
+  discriminator_dims: [256, 256, 256]
+
+  generation:
+    n_samples_to_generate: 1000000
+    new_generated_data_filename: name_of_generated_file.hdf5
+    model_path: path/to/model/checkpoint.ckpt
+
