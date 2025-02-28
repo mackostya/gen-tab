@@ -1,8 +1,10 @@
-data_transformer_path: path\to\your\data_transoformer.pkl
-train_data_path: path\to\your\train\data
-val_data_path: path\to\your\validation\data
 
-data_dir: absolute_path\to\your\data
+data_transformer_path: scalers\data_transformer.pkl
+train_data_path: data\house-pricing\train.csv
+val_data_path: data\house-pricing\test.csv
+
+data_dir: C:\Projects\gen-tab\data\house-pricing
+
 # ---------------
 # Hyperparameters
 # ---------------
@@ -28,4 +30,3 @@ gan:
     n_samples_to_generate: 1000000
     new_generated_data_filename: name_of_generated_file.hdf5
     model_path: path/to/model/checkpoint.ckpt
-

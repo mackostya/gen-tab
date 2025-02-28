@@ -3,4 +3,4 @@ tensorboard_visualize_epochs: 5
 # Example of features for analog detector
 features_to_visualize: []
 
-parameters_to_visualize: []
+parameters_to_visualize: [_decoder.seq]

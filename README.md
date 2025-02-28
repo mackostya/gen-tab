@@ -34,12 +34,23 @@ Afterwards you can run a training of the variational autoencoder as follows
 ```
 python -m scripts.train_vae
 ```
-or use the created setup for VSCode Debug.
+or use the created setup for VSCode Debug (see the image below).
+<p align="left">
+  <img src="imgs/run_with_launch_json.png" alt="Image1" width="208" />
+</p>
 
 # Tensorboard
+<!-- Images in a row -->
+<p align="center">
+  <img src="imgs/val_loss.png" alt="Image1" width="208" />
+  <img src="imgs/weights.png" alt="Image2" width="200" />
+  <img src="imgs/grads.png" alt="Image3" width="204" />
+</p>
 
 To run tesorboard visualizing your algorithms use Tensorboard Extension in VSCode or run 
 
 ```
 python -m tensorboard.main --logdir [logdir name]
 ```
+
+If you want to specialize specific blocks of your architecture, including their histomgrams, weights and gradients please edit them in [tb_settings.yaml](https://github.com/mackostya/gen-tab/blob/main/conf/tb_settings.yaml). Add them to `parameters_to_visualize`.
