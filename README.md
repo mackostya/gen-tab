@@ -1,4 +1,6 @@
 # Tabular data generation
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+![Kaggle](https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white)
 
 This project serves as an example ML / DL project for tabular data generation. It takes at the basis the approach of [CTGAN and TVAE](https://github.com/sdv-dev/CTGAN) and improves the framework in follwoing context:
 
