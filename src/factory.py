@@ -5,7 +5,7 @@ import numpy as np
 from dataclasses import dataclass
 from typing import Optional
 from src.loop import VAELoop
-from src.data.data_transformer import DataTransformer
+from src.dataset.data_transformer import DataTransformer
 
 
 @dataclass

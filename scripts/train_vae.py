@@ -9,8 +9,8 @@ from lightning.pytorch import loggers as pl_loggers
 from lightning.pytorch.callbacks import ModelCheckpoint
 
 from src.factory import GenerationModelFactory
-from src.data.dataset import GenerationDataset
-from src.data.data_transformer import DataTransformer
+from src.dataset.dataset import GenerationDataset
+from src.dataset.data_transformer import DataTransformer
 from src.tools import load_cfg, init_logging, load_data_transformer, save_data_transformer
 
 

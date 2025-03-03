@@ -10,7 +10,7 @@ import warnings
 
 import lightning as L
 import numpy as np
-from src.data.data_transformer import DataTransformer
+from src.dataset.data_transformer import DataTransformer
 from lightning.pytorch import loggers as pl_loggers
 from .vae import Encoder, Decoder, loss_function
 from .tools import load_cfg
