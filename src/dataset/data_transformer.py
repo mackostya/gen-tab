@@ -1,6 +1,6 @@
 """
 DataTransformer module.
-Adopted from https://github.com/sdv-dev/CTGAN/blob/main/ctgan/data_transformer.py
+Adapted from https://github.com/sdv-dev/CTGAN/blob/main/ctgan/data_transformer.py
 """
 
 from collections import namedtuple
