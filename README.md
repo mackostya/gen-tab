@@ -52,7 +52,7 @@ or use the created setup for VSCode Debug (see the image below).
 To run tesorboard visualizing your algorithms use Tensorboard Extension in VSCode or run 
 
 ```
-python -m tensorboard.main --logdir [logdir name]
+python -m tensorboard.main --logdir [logdir name]  --samples_per_plugin "images=100"
 ```
 
 If you want to specialize specific blocks of your architecture, including their histomgrams, weights and gradients please edit them in [tb_settings.yaml](https://github.com/mackostya/gen-tab/blob/main/conf/tb_settings.yaml). Add them to `parameters_to_visualize`.
