@@ -5,6 +5,7 @@ import numpy as np
 from dataclasses import dataclass
 from typing import Optional
 from src.vae.loop import VAELoop
+from src.gan.loop import GANLoop
 from src.dataset.data_transformer import DataTransformer
 
 
@@ -91,7 +92,6 @@ class GenerationModelFactory:
                 discriminator_dim=self.cfg[self.model_type]["discriminator_dims"],
                 generator_dim=self.cfg[self.model_type]["generator_dims"],
                 embedding_dim=self.cfg[self.model_type]["embedding_dim"],
-                positions_to_train=self.cfg["positions_to_train"],
                 batch_size=self.cfg["batch_size"],
                 data_transformer=self.data_transformer,
             )
