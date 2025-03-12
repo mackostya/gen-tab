@@ -34,9 +34,10 @@ You need to firstly setup the information in **conf/generation_config.yaml** con
 Afterwards you can run a training of the variational autoencoder as follows
 
 ```
-python -m scripts.train_vae
+python -m scripts.train --model-type=[model]
 ```
-or use the created setup for VSCode Debug (see the image below).
+
+while acceptable `[model]` is either `vae` (default) or `gan`. Or use the created setup for VSCode Debug (see the image below).
 <p align="left">
   <img src="imgs/run_with_launch_json.png" alt="Image1" width="208" />
 </p>
