@@ -16,9 +16,7 @@ This project serves as an example ML / DL project for tabular data generation. I
 
 # Data
 
-An example dataset will be used for the data generation pipeline. The dataset is taken from one of the most popular kaggle challanges: [Titanic](https://www.kaggle.com/competitions/titanic/data). Download and put it into the folder `data`.
-
-Another used dataset is from the challenge [Housing Prices competition](https://www.kaggle.com/competitions/home-data-for-ml-course/data). This dataset constists of more continuous data features.
+An example dataset will be used for the data generation pipeline. The dataset is taken from one of the most popular kaggle challanges: [Housing Prices competition](https://www.kaggle.com/competitions/home-data-for-ml-course/data). Download and put it into the folder `data`.
 
 # Environment
 
