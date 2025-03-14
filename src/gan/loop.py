@@ -10,16 +10,15 @@ import lightning as L
 import numpy as np
 
 from torch.nn import functional
-from lightning.pytorch import loggers as pl_loggers
 
 from .model.generator import Generator
 from .model.discriminator import Discriminator
 
 from src.dataset.data_transformer import DataTransformer
-from ..tools import load_cfg
+from ..loop_interface import ModelInterface
 
 
-class GANLoop(L.LightningModule):
+class GANLoop(ModelInterface, L.LightningModule):
     """
     GAN training loop class that handles the training and validation steps, as well as data generation.
 
@@ -64,7 +63,6 @@ class GANLoop(L.LightningModule):
         self._discriminator_lr = 5e-5
         self._discriminator_decay = 1e-6
 
-        self.tb_logger = None
         self._batch_size = batch_size
         self._embedding_dim = embedding_dim
         self._input_dim = input_dim
@@ -78,7 +76,6 @@ class GANLoop(L.LightningModule):
         self._generator = Generator(embedding_dim=embedding_dim, generator_dim=generator_dim, data_dim=data_dim).to(
             self.device
         )
-        self._tb_settings = load_cfg("conf/tb_settings.yaml")
 
     @staticmethod
     def _gumbel_softmax(logits, tau=1, hard=False, eps=1e-10, dim=-1):
@@ -228,7 +225,7 @@ class GANLoop(L.LightningModule):
         if self.current_epoch % self._tb_settings["tensorboard_visualize_epochs"] == 0 and batch_idx == 0:
             fake_t = fake_t.detach().cpu().numpy()
             fake = self.generate(x.shape[0])
-
+            self.log_tb_distributions(x.detach().cpu().numpy(), fake)
         return {"loss_d": loss_d, "loss_g": loss_g}
 
     def generate(self, n_samples_to_generate: int):
@@ -296,37 +293,6 @@ class GANLoop(L.LightningModule):
         y_real = self._discriminator(real.to(torch.float32))
 
         return {"fake": fake, "y_fake": y_fake, "y_real": y_real}
-
-    def init_tb_logger(self):
-        if self.tb_logger is None:
-            # Get tensorboard logger
-            tb_logger = None
-            for logger in self.trainer.loggers:
-                if isinstance(logger, pl_loggers.TensorBoardLogger):
-                    tb_logger = logger.experiment
-                    break
-
-            if tb_logger is None:
-                raise ValueError("TensorBoard Logger not found")
-            self.tb_logger = tb_logger
-            return self.tb_logger
-        else:
-            return self.tb_logger
-
-    def log_tb_histograms(self) -> None:
-        """
-        Interface for logging histograms to tensorboard.
-        :return:
-        """
-        for block_name in self._tb_settings["parameters_to_visualize"]:
-            subblock_names = block_name.split(".")
-            block = self
-            for b_name in subblock_names:
-                block = getattr(block, b_name)
-            for name, weight in block.named_parameters():
-                self.tb_logger.add_histogram(name, weight, self.current_epoch)
-                if weight.grad is not None:
-                    self.tb_logger.add_histogram(name + "_grad", weight.grad, self.current_epoch)
 
     def configure_optimizers(self):
         """

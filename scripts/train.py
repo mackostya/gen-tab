@@ -96,6 +96,7 @@ def main(model_type: str, resume_from: str):
         devices=[0],
         logger=tb_logger,
         callbacks=[ckeckpoint] if model_type == "vae" else None,
+        log_every_n_steps=10,
     )
     model_factory = GenerationModelFactory(
         model_type=model_type,

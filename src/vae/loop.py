@@ -14,10 +14,10 @@ from src.dataset.data_transformer import DataTransformer
 from lightning.pytorch import loggers as pl_loggers
 from .model.vae import Encoder, Decoder
 from .model.vae_loss import loss_function
-from ..tools import load_cfg
+from ..loop_interface import ModelInterface
 
 
-class VAELoop(L.LightningModule):
+class VAELoop(ModelInterface, L.LightningModule):
     """
     VAE training loop class that handles the training and validation steps, as well as data generation.
 
@@ -66,7 +66,6 @@ class VAELoop(L.LightningModule):
         self._l2scale = 1e-4
         self._loss_factor = 2.0
 
-        self.tb_logger = None
         data_dim = self._transformer.output_dimensions
 
         self._encoder = Encoder(
@@ -80,7 +79,7 @@ class VAELoop(L.LightningModule):
             self._decompress_dims,
             data_dim,
         ).to(self._device)
-        self._tb_settings = load_cfg("conf/tb_settings.yaml")
+
         warnings.simplefilter(action="ignore", category=FutureWarning)
 
     def _step(self, x):
@@ -161,10 +160,9 @@ class VAELoop(L.LightningModule):
         self.log("val_kld_loss", loss_kld, on_step=False, on_epoch=True, sync_dist=True)
         self.log("val_loss", loss, on_step=False, on_epoch=True, sync_dist=True)
 
-        # if self.current_epoch % self._tb_settings["tensorboard_visualize_epochs"] == 0 and batch_idx == 0:
-        #     fake = self.generate(x.shape[0])
-        # self.log_tb_distributions(real.detach().cpu().numpy(), fake)
-        # self.log_tb_correlations(fake)
+        if self.current_epoch % self._tb_settings["tensorboard_visualize_epochs"] == 0 and batch_idx == 0:
+            fake = self.generate(x.shape[0])
+            self.log_tb_distributions(real.detach().cpu().numpy(), fake)
         return {"loss": loss, "loss_rec": loss_rec, "loss_kld": loss_kld}
 
     @classmethod
@@ -226,37 +224,6 @@ class VAELoop(L.LightningModule):
         x, sigmas = self._decoder(x)
 
         return {"rec": x, "sigmas": sigmas, "mu": mu, "logvar": logvar, "emb": emb}
-
-    def init_tb_logger(self):
-        if self.tb_logger is None:
-            # Get tensorboard logger
-            tb_logger = None
-            for logger in self.trainer.loggers:
-                if isinstance(logger, pl_loggers.TensorBoardLogger):
-                    tb_logger = logger.experiment
-                    break
-
-            if tb_logger is None:
-                raise ValueError("TensorBoard Logger not found")
-            self.tb_logger = tb_logger
-            return self.tb_logger
-        else:
-            return self.tb_logger
-
-    def log_tb_histograms(self) -> None:
-        """
-        Interface for logging histograms to tensorboard.
-        :return:
-        """
-        for block_name in self._tb_settings["parameters_to_visualize"]:
-            subblock_names = block_name.split(".")
-            block = self
-            for b_name in subblock_names:
-                block = getattr(block, b_name)
-            for name, weight in block.named_parameters():
-                self.tb_logger.add_histogram(name, weight, self.current_epoch)
-                if weight.grad is not None:
-                    self.tb_logger.add_histogram(name + "_grad", weight.grad, self.current_epoch)
 
     def configure_optimizers(self):
         """
