@@ -1,10 +1,16 @@
 # Tabular data generation
 ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 ![Kaggle](https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white)
-
+<!-- Images in a row -->
+<p align="center">
+  <img src="imgs/val_loss.png" alt="Image1" width="208" />
+  <img src="imgs/weights.png" alt="Image2" width="200" />
+  <img src="imgs/grads.png" alt="Image3" width="204" />
+  <img src="imgs/feature_generation_evolution.gif" alt="Image4" width="204" />
+</p>
 This project serves as an example ML / DL project for tabular data generation. It takes at the basis the approach of [CTGAN and TVAE](https://github.com/sdv-dev/CTGAN) and improves the framework in follwoing context:
 
-- Uses the approach of firstly fitting the multivariate gaussians before training the VAE and GAN models
+- The data transformer is saved and reused for the data, if not requested differently
 - Framework rewritten in PyTorch Lightning -> more flexible and easily manageble
 - Implemented the Tensorboard pluggin to visualize the training processes
 
@@ -43,13 +49,7 @@ while acceptable `[model]` is either `vae` (default) or `gan`. Or use the create
 </p>
 
 # Tensorboard
-<!-- Images in a row -->
-<p align="center">
-  <img src="imgs/val_loss.png" alt="Image1" width="208" />
-  <img src="imgs/weights.png" alt="Image2" width="200" />
-  <img src="imgs/grads.png" alt="Image3" width="204" />
-  <img src="imgs/feature_generation_evolution.gif" alt="Image4" width="204" />
-</p>
+
 
 To run tesorboard visualizing your algorithms use Tensorboard Extension in VSCode or run 
 
