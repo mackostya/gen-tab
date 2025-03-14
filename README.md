@@ -48,6 +48,7 @@ while acceptable `[model]` is either `vae` (default) or `gan`. Or use the create
   <img src="imgs/val_loss.png" alt="Image1" width="208" />
   <img src="imgs/weights.png" alt="Image2" width="200" />
   <img src="imgs/grads.png" alt="Image3" width="204" />
+  <img src="imgs/feature_generation_evolution.gif" alt="Image4" width="204" />
 </p>
 
 To run tesorboard visualizing your algorithms use Tensorboard Extension in VSCode or run 
