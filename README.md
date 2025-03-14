@@ -8,7 +8,9 @@
   <img src="imgs/grads.png" alt="Image3" width="204" />
   <img src="imgs/feature_generation_evolution.gif" alt="Image4" width="204" />
 </p>
-This project serves as an example ML / DL project for tabular data generation. It takes at the basis the approach of [CTGAN and TVAE](https://github.com/sdv-dev/CTGAN) and improves the framework in follwoing context:
+
+This project serves as an example ML / DL project for tabular data generation. It takes at the basis the approach of
+[CTGAN and TVAE](https://github.com/sdv-dev/CTGAN) and improves the framework in follwoing context:
 
 - The data transformer is saved and reused for the data, if not requested differently
 - Framework rewritten in PyTorch Lightning -> more flexible and easily manageble
