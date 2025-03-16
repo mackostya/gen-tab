@@ -1,6 +1,6 @@
 tensorboard_visualize_epochs: 5
 
 # Example of features for analog detector
-features_to_visualize: []
+features_to_visualize: [0, 1, 2, 3, 4, 5]
 
-parameters_to_visualize: [_discriminator] # needs to be adopted, depending on the model
+parameters_to_visualize: [] # needs to be adopted, depending on the model
