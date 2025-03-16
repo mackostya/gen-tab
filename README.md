@@ -92,3 +92,18 @@ The training workflow is implemented using PyTorch Lightning. Below is a descrip
   - `src/interface.py` – Provides a model interface with general logging functions used across all models.
   - `src/visualizations.py` – Contains `matplotlib` visualizations used in the repository.
   - `src/tools.py` – Includes various utility functions used throughout the repository.
+
+# Citing **gen-tab**
+
+If you use this code in your research, consider citing the following abstract. This implementation of data generation forms the core of the data generation in this abstract.
+
+```bibtex
+@INPROCEEDINGS{10657766,
+  author={Lavronenko, K. and Paiva, L. Lopes de and Mueller, F. and Schulz, V. and Naunheim, S.},
+  booktitle={2024 IEEE Nuclear Science Symposium (NSS), Medical Imaging Conference (MIC) and Room Temperature Semiconductor Detector Conference (RTSD)}, 
+  title={Towards artificial data generation for accelerated PET detector ML-based timing calibration using GANs}, 
+  year={2024},
+  pages={1-2},
+  keywords={Temperature measurement;Semiconductor device measurement;Temperature distribution;Correlation;Semiconductor detectors;Supervised learning;Position measurement},
+  doi={10.1109/NSS/MIC/RTSD57108.2024.10657766}
+}
