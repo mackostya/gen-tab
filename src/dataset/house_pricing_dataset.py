@@ -7,10 +7,10 @@ from torch.utils.data import Dataset
 from src.dataset.data_transformer import DataTransformer
 
 
-class GenerationDataset(Dataset):
+class HousePricingDataset(Dataset):
     def __init__(self, file_path: str, data_transformer: DataTransformer):
         """
-        Initializes the GenerationDataset object by loading the dataset from the specified HDF5 file and setting up
+        Initializes the HousePricingDataset object by loading the dataset from the specified HDF5 file and setting up
         feature configurations and transformations.
 
         Args:
@@ -21,8 +21,11 @@ class GenerationDataset(Dataset):
         self._file_name = file_path
         self._data = pd.read_csv(self._file_name)
         self._numerical_features = self._data.select_dtypes(include=[np.number]).columns.tolist()
+        print(self._numerical_features)
         if "SalePrice" in self._numerical_features:
             self._numerical_features.remove("SalePrice")
+        if "Id" in self._numerical_features:
+            self._numerical_features.remove("Id")
         self._data_numerical = self._data[self._numerical_features]
         self._data_transformer = data_transformer
         self.input_dim = len(self._numerical_features)

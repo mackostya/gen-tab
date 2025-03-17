@@ -9,7 +9,7 @@ from lightning.pytorch import loggers as pl_loggers
 from lightning.pytorch.callbacks import ModelCheckpoint
 
 from src.factory import GenerationModelFactory
-from src.dataset.dataset import GenerationDataset
+from src.dataset.house_pricing_dataset import HousePricingDataset
 from src.dataset.data_transformer import DataTransformer
 from src.tools import load_cfg, init_logging, load_data_transformer, save_data_transformer
 
@@ -22,18 +22,18 @@ def load_data(cfg):
         logging.info("Loading data transformer from file.")
         data_transformer = load_data_transformer(cfg["data_transformer_path"])
 
-        train_dataset = GenerationDataset(cfg["train_data_path"], data_transformer=data_transformer)
+        train_dataset = HousePricingDataset(cfg["train_data_path"], data_transformer=data_transformer)
 
     else:
         logging.info("No data transformer file found. Fitting data transformer.")
-        train_dataset = GenerationDataset(cfg["train_data_path"], data_transformer=data_transformer)
+        train_dataset = HousePricingDataset(cfg["train_data_path"], data_transformer=data_transformer)
         train_dataset.fit_transformer()
 
         save_data_transformer(data_transformer, cfg["data_transformer_path"])
 
     train_dataset.transform()
 
-    val_dataset = GenerationDataset(cfg["val_data_path"], data_transformer=data_transformer)
+    val_dataset = HousePricingDataset(cfg["val_data_path"], data_transformer=data_transformer)
     val_dataset.transform()
     init_data_dim = train_dataset.input_dim
     sample_input = next(iter(train_dataset))
