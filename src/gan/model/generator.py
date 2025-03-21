@@ -1,6 +1,6 @@
 """
 Generator network.
-Adopted from https://github.com/sdv-dev/CTGAN/blob/main/ctgan/synthesizers/ctgan.py
+Adapted from https://github.com/sdv-dev/CTGAN/blob/main/ctgan/synthesizers/ctgan.py
 """
 
 import torch
