@@ -16,6 +16,9 @@ This project serves as an example ML / DL project for tabular data generation. I
 - Framework rewritten in PyTorch Lightning -> more flexible and easily manageble
 - Implemented the Tensorboard pluggin to visualize the training processes
 
+Current work:
+- Further Development lies in implementation of the diffusion model, acting on tabular data. The original model from [Simple Diffusion](https://github.com/filipbasara0/simple-diffusion/tree/main) has been used and adapted in this repository.
+
 # Data
 
 An example dataset will be used for the data generation pipeline. The dataset is taken from one of the most popular kaggle challanges: [Housing Prices competition](https://www.kaggle.com/competitions/home-data-for-ml-course/data). Download and put it into the folder `data`.
