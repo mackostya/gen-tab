@@ -21,7 +21,6 @@ class HousePricingDataset(Dataset):
         self._file_name = file_path
         self._data = pd.read_csv(self._file_name)
         self._numerical_features = self._data.select_dtypes(include=[np.number]).columns.tolist()
-        print(self._numerical_features)
         if "SalePrice" in self._numerical_features:
             self._numerical_features.remove("SalePrice")
         if "Id" in self._numerical_features:

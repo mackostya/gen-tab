@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional
 from src.vae.loop import VAELoop
 from src.gan.loop import GANLoop
+from src.diffusion.loop import DiffusionLoop
 from src.dataset.data_transformer import DataTransformer
 
 
@@ -50,6 +51,8 @@ class GenerationModelFactory:
             return self._get_vae()
         elif self.model_type == "gan":
             return self._get_gan()
+        elif self.model_type == "diffusion":
+            return self._get_diffusion()
         else:
             raise ValueError(f"Unknown model type: {self.cfg['model_type']}")
 
@@ -97,6 +100,24 @@ class GenerationModelFactory:
             )
         else:
             return self._get_gan_from_checkpoint()
+
+    def _get_diffusion(self):
+        """
+        Create and return a Diffusion model. Load from checkpoint if specified.
+
+        Returns:
+            DiffusionLoop: The initialized GAN model.
+        """
+        if self.resume_from is None:
+            return DiffusionLoop(
+                input_dim=self.input_dim,
+                hidden_dims=self.cfg[self.model_type]["hidden_dims"],
+                n_timesteps=self.cfg[self.model_type]["n_timesteps"],
+                batch_size=self.cfg["batch_size"],
+                data_transformer=self.data_transformer,
+            )
+        else:
+            pass
 
     def _get_vae_from_checkpoint(self):
         """
