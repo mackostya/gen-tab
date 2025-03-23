@@ -1,8 +1,6 @@
-import torch, torch.nn as nn, torch.utils.data as data, torchvision as tv
+import torch
 import lightning as L
 import numpy as np
-from lightning.pytorch import loggers as pl_loggers
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 import torch.nn.functional as F
 
@@ -95,7 +93,7 @@ class DiffusionLoop(ModelInterface, L.LightningModule):
 
     def configure_optimizers(self):
         self.init_tb_logger()
-        return torch.optim.AdamW(
+        return torch.optim.Adam(
             self.unet.parameters(),
             lr=1e-4,
             betas=(0.95, 0.999),
