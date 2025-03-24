@@ -83,7 +83,7 @@ The training workflow is implemented using PyTorch Lightning. Below is a descrip
 - `docs/` – Contains important documents, such as the CTGAN License.
 - `scripts/`
   - `scripts/train.py` – Script for training the models.
-  - `scripts/generate.py` – <span style="color:red;">Work in Progress</span>.
+  - `scripts/generate.py` – Script for data generation. Set the path to the model, as well as the name of generated file in `conf/generation_config.yaml`.
 - `src/`
   - `src/[model]/` – Implementation of the training procedures and architecture for each model.
     - `src/[model]/loop.py` – **PyTorch Lightning** loop. Each loop inherits from `L.LightningModule` to leverage all the functionalities provided by Lightning for training and from `ModelInterface` for TensorBoard logging and checkpoint management.
