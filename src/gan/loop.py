@@ -267,7 +267,7 @@ class GANLoop(ModelInterface, L.LightningModule):
         Returns:
             GANLoop: The loaded model.
         """
-        checkpoint = torch.load(file_path, map_location=lambda storage, loc: storage)
+        checkpoint = torch.load(file_path, map_location=lambda storage, loc: storage, weights_only=False)
         logging.info(f"Loading model with hyperparameters: {checkpoint['hyper_parameters']}")
         return GANLoop.load_from_checkpoint(file_path, checkpoint["hyper_parameters"])
 

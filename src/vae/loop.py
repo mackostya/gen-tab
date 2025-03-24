@@ -176,7 +176,7 @@ class VAELoop(ModelInterface, L.LightningModule):
         Returns:
             VAELoop: The loaded VAE model.
         """
-        checkpoint = torch.load(file_path, map_location=lambda storage, loc: storage)
+        checkpoint = torch.load(file_path, map_location=lambda storage, loc: storage, weights_only=False)
         logging.info(f"Loading model with hyperparameters: {checkpoint['hyper_parameters']}")
         return VAELoop.load_from_checkpoint(file_path, checkpoint["hyper_parameters"])
 
