@@ -3,7 +3,6 @@ import lightning as L
 import os
 import torch
 import click
-import numpy as np
 
 from lightning.pytorch import loggers as pl_loggers
 from lightning.pytorch.callbacks import ModelCheckpoint

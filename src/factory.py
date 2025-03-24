@@ -105,7 +105,7 @@ class GenerationModelFactory:
         Returns:
             VAELoop: The loaded VAE model.
         """
-        return VAELoop.load(self.cfg["model_path"] if self.resume_from is None else self.resume_from)
+        return VAELoop.load(self.resume_from)
 
     def _get_gan_from_checkpoint(self):
         """
@@ -114,4 +114,4 @@ class GenerationModelFactory:
         Returns:
             GANLoop: The loaded GAN model.
         """
-        return GANLoop.load(self.cfg["model_path"] if self.resume_from is None else self.resume_from)
+        return GANLoop.load(self.resume_from)
